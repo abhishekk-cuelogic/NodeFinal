@@ -8,7 +8,8 @@ var secretekey = 'iamsecreate';
 
 
 router.get('/',function(req,res){
-    res.sendFile(path.join('/home/abhishek/NodeFinal' + '/public'+'/signin.html'));
+    res.sendFile(path.join('H:\\NodeFinal'+'\\public'+'\\signin.html'));
+   // res.sendFile(path.join('H:\NodeFinal' + '\public'+'\signin.html'));
 })
 
 router.post('/',function(req,res){

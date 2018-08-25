@@ -5,7 +5,7 @@ var router = express.Router();
 var userData = require('../model/user');
 
 router.get('/',function(req,res){
-    res.sendFile(path.join('/home/abhishek/NodeFinal' + '/public'+'/signup.html'));
+    res.sendFile(path.join('H:\\NodeFinal'+'\\public'+'\\signup.html'));
 })
 
 router.post('/',function(req,res){
