@@ -49,7 +49,7 @@
                 success:function(res){
                    // console.log(res.token);
                     document.cookie =  'token='+res.token;
-                    window.location.assign('/profile');
+                    window.location.replace('/profile?id='+res.token);
                 }
             })
         }

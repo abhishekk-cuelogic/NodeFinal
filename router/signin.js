@@ -28,15 +28,13 @@ router.post('/',function(req,res){
                         
                         var token = jwt.sign({
 
-                                password:password
+                                username:uname
                             },
                             secretekey,
                             {
                                 expiresIn: '2h'
                             });
                             console.log("login successful");
-                            var decode = jwt.verify(token,secretekey);
-                            console.log(decode);
                             res.json({token:token});
 
                        } else {

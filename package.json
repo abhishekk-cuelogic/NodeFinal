@@ -12,7 +12,10 @@
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "express-useragent": "^1.0.12",
     "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.2.9"
+    "moment": "^2.22.2",
+    "mongoose": "^5.2.9",
+    "request-ip": "^2.1.1"
   }
 }
