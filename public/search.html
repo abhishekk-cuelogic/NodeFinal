@@ -16,7 +16,7 @@
                 <form class="form-inline">
                   <input class="form-control mr-sm-2" type="text" placeholder="Search" id="searchinput">
                   <button class="btn btn-success" type="button" onclick="search()">Search</button>
-                  <button class="btn btn-primary" onclick="back()">Back</button>
+                  <button class="btn btn-primary"type="button" onclick="back()">Back</button>
                 </form> 
         </nav>    
 
@@ -26,10 +26,7 @@
 
         <script>
             function search() {
-                
-                //location.reload(true);
                 var username = $('#searchinput').val();
-                console.log(username);
 
                 $.ajax({
                 url:'http://localhost:3000/searchuser',
@@ -67,6 +64,7 @@
             function back() {
                 var id=document.cookie;
                 var token=id.split("=");
+                console.log("token");
                 
                 window.location.replace("/profile?id=" + token[1]);
             }

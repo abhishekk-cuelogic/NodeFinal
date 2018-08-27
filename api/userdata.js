@@ -3,9 +3,8 @@ var router =express.Router();
 var jwt = require('jsonwebtoken');
 var userData = require ('../model/user');
 
-router.post('/',function(req,res){
-
-    jwt.verify(req.body.token, 'iamsecreate',function(err,decode){
+router.get('/',function(req,res){
+    jwt.verify(req.query.token, 'iamsecreate',function(err,decode){
         if(err){
             throw err;
         } else {
