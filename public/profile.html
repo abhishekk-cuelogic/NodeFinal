@@ -16,6 +16,7 @@
     <header>
         <nav class="navbar navbar-inverse">
             <button class="btn btn-success" onclick="update()">Update</button>
+            <button class="btn btn-success" onclick="search()">Search</button>
         </nav>
     </header>
 
@@ -27,6 +28,10 @@
             var val=id.split("=");
             console.log(val);
             window.location.replace("/update?id=" + val[1]);
+        }
+
+        function search() {
+            window.location.replace("/search");
         }
 
     </script>

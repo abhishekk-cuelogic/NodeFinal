@@ -14,7 +14,7 @@
 <body>
     <header>
         <nav class="navbar navbar-inverse">
-
+            <button class="btn btn-primary" onclick="back()">Back</button>
         </nav>
     </header>
 
@@ -34,6 +34,7 @@
                     <input type="text" class="form-control" id="lname" name="lname" disabled>
                 </div>
                 <button type="button" class="btn btn-success" onclick="edit()">Edit</button>
+                <button type="button" class="btn btn-success" onclick="save()">Save</button>
             </form>
     </div>
         
@@ -56,12 +57,27 @@
                 }
             })
 
-
-
         function edit() {
 
             $("#fname").prop('disabled',false);
             $("#lname").prop('disabled',false);
+        }
+
+        function save() {
+            alert("save");
+            $.ajax({
+                url:'http://localhost:3000/userdata',
+                method:'put',
+                data:{
+                    username:$('#uname').val(),
+                    fname:$('#fname').val(),
+                    lname:$('#lname').val()
+                }
+            })
+        }
+
+        function back() {
+            window.location.replace("/profile?id=" + token[1]);
         }
     
     </script>

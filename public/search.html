@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Info</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <script src='jquery-3.3.1.min.js'></script> -->
+</head>
+<body>
+        <nav class="navbar navbar-inverse">
+                <form class="form-inline">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search" id="searchinput">
+                  <button class="btn btn-success" type="button" onclick="search()">Search</button>
+                  <button class="btn btn-primary" onclick="back()">Back</button>
+                </form> 
+        </nav>    
+
+        <div class="jumbotron">
+
+        </div>
+
+        <script>
+            function search() {
+                
+                //location.reload(true);
+                var username = $('#searchinput').val();
+                console.log(username);
+
+                $.ajax({
+                url:'http://localhost:3000/searchuser',
+                method:'post',
+                data:{
+                    username:username
+                },
+                success:function(res){
+                   console.log(res);
+                   console.log(res.length);
+                   //console.log(res.UserName);
+                   
+                   if(res.length) {
+                       for(var i=0 ; i<= res.length ;i++){
+                        var data =  `<div>UserName: <h3>${res[i].UserName}</h3>`;
+                        data += `First Name :<h3>${res[i].FName}</h3>`; 
+                        data += `Last Name :<h3>${res[i].LName}</h3>`;                
+                        data += "</div>";
+                        $('.jumbotron').append("<br/>"+data);
+                       }
+                   } else {
+
+                        var data =  `<div>UserName: <h3>${res.UserName}</h3>`;
+                        data += `First Name :<h3>${res.FName}</h3>`; 
+                        data += `Last Name :<h3>${res.LName}</h3>`;                
+                        data += "</div>";
+                        $('.jumbotron').append("<br/>"+data);
+
+                   }
+                       
+                 }
+            })
+            }
+
+            function back() {
+                var id=document.cookie;
+                var token=id.split("=");
+                
+                window.location.replace("/profile?id=" + token[1]);
+            }
+            
+        </script>
+</body>
+</html>

@@ -9,7 +9,6 @@ var userActivity = require ('../model/userActivity');
 
 
 router.get('/',function(req,res){
-   // res.sendFile(path.join('/home/abhishek/NodeFinal' + '/public'+'/profile.html'))
 
    var source = req.headers['user-agent'],
    ua = useragent.parse(source);
@@ -35,7 +34,8 @@ router.get('/',function(req,res){
            data.save();
        }
    })
-   res.sendFile(path.join('H:\\NodeFinal'+'\\public'+'\\profile.html'))
+   //res.sendFile(path.join('H:\\NodeFinal'+'\\public'+'\\profile.html'))
+   res.sendFile(path.join('/home/abhishek/NodeFinal' + '/public'+'/profile.html'))
 })
 
 module.exports=router;

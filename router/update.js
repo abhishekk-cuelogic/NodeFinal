@@ -10,8 +10,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
 router.get('/',authetication,function(req,res){
-    //res.sendFile(path.join('/home/abhishek/NodeFinal' + '/public'+'/update.html'))
-    res.sendFile(path.join('H:\\NodeFinal'+'\\public'+'\\update.html'))
+    res.sendFile(path.join('/home/abhishek/NodeFinal' + '/public'+'/update.html'))
+    //res.sendFile(path.join('H:\\NodeFinal'+'\\public'+'\\update.html'))
 })
 
 module.exports=router;
