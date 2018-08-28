@@ -6,6 +6,7 @@ const server = app.listen(3000);
 const io = require('socket.io').listen(server);
 io.set('origins', 'http://localhost:3000');
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
@@ -34,6 +35,19 @@ io.on('connection', function (socket) {
     socket.on('my other event', function (data) {
       console.log(data.msg);
     });
+});
+
+io.of('/signin')
+.on('connection', function (socket) {
+     socket.emit('news', {hello: 'welcome to signin page'});
+});
+
+io.of('/profile')
+.on('connection', function (socket) {
+     socket.emit('news', {hello: 'welcome to your Profile'});
+     socket.on('my other event', function (data) {
+        console.log(data.msg);
+      });
 });
 
 console.log('server running on port 3000');

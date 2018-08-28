@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
 </head>
 <body>
     <header>
@@ -34,6 +35,12 @@
         
     <script>
 
+         var socket = io.connect('http://localhost:3000/signin');
+            socket.on('news', function (data) {
+                alert(data.hello);
+                socket.emit('my other event', { msg: 'Thank you' });
+            });
+
         function signin() {
             var username=$('#uname').val();
             var password=$('#password').val();
@@ -46,11 +53,11 @@
                     password:password
                 },
                 success:function(res){
-                   // console.log(res.token);
                     document.cookie =  'token='+res.token;
                     window.location.replace('/profile?id='+res.token); 
                 }
             })
+
         }    
     </script>
 </body>
