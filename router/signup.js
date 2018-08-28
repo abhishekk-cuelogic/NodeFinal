@@ -1,9 +1,9 @@
-var express = require ('express');
-var bcrypt = require ('bcrypt');
-var path = require('path');
-var router = express.Router();
-var userData = require('../model/user');
-var validation = require('../middleware/validation');
+import express from 'express';
+import path from 'path';
+import validation from '../middleware/validation';
+import bcrypt from 'bcrypt';
+import userData from '../model/user';
+const router = express.Router();
 
 router.get('/',function(req,res){
    // res.sendFile(path.join('H:\\NodeFinal'+'\\public'+'\\signup.html'));
@@ -11,20 +11,21 @@ router.get('/',function(req,res){
 })
 
 router.post('/',validation,function(req,res){
-
-        var password = req.body.password;
+        let password = req.body.password;
 
         let hash = bcrypt.hashSync(password, 10);
 
-        var user = {
+        let user = {
             UserName:req.body.username,
-             Password:hash,
+            Password:hash,
             FName:req.body.fname,
             LName:req.body.lname
         }
 
-        var data = new userData(user);
+        let data = new userData(user);
         data.save();  
-    })
+        res.json("Successful");
+});
+
 
 module.exports = router;

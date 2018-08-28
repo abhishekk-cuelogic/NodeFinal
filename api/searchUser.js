@@ -1,9 +1,9 @@
-var express = require('express');
-var router =express.Router();
-var userData = require ('../model/user');
+import express from 'express';
+const router =express.Router();
+import userData from '../model/user';
 
 router.post('/',function(req,res){
-    var username=req.body.username;
+    let username=req.body.username;
      
     if(username === "all") {
         userData.find({},function(err,user){

@@ -1,11 +1,10 @@
-var express = require ('express');
-var router = express.Router();
-var path = require('path');
-var bcrypt = require('bcrypt');
-var userData = require('../model/user');
-var jwt = require('jsonwebtoken');
-var secretekey = 'iamsecreate';
-
+import express from 'express';
+const router = express.Router();
+import path from 'path';
+import userData from '../model/user';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+const secretekey = 'imsecrete'
 
 router.get('/',function(req,res){
    // res.sendFile(path.join('H:\\NodeFinal'+'\\public'+'\\signin.html'));
@@ -13,10 +12,8 @@ router.get('/',function(req,res){
 })
 
 router.post('/',function(req,res){
-    console.log(req.body);
-
-    var uname = req.body.username;
-    var password = req.body.password
+    let uname = req.body.username;
+    let password = req.body.password
 
     userData.find({},function(err,users){
         if(err){
@@ -44,7 +41,6 @@ router.post('/',function(req,res){
             })
         }
     })
-})
-
+});
 
 module.exports = router;

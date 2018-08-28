@@ -14,7 +14,7 @@
 <body>
         <nav class="navbar navbar-inverse">
                 <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="text" placeholder="Search" id="searchinput">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Type 'all' to get all users" id="searchinput">
                   <button class="btn btn-success" type="button" onclick="search()">Search</button>
                   <button class="btn btn-primary"type="button" onclick="back()">Back</button>
                 </form> 
@@ -35,24 +35,25 @@
                     username:username
                 },
                 success:function(res){
-                   console.log(res);
-                   console.log(res.length);
-                   //console.log(res.UserName);
-                   
+                    
+                    if(res === null) {
+                        alert("User is not available");
+                    }
+
                    if(res.length) {
                        for(var i=0 ; i<= res.length ;i++){
-                        var data =  `<div>UserName: <h3>${res[i].UserName}</h3>`;
-                        data += `First Name :<h3>${res[i].FName}</h3>`; 
-                        data += `Last Name :<h3>${res[i].LName}</h3>`;                
-                        data += "</div>";
+                        var data =  `<div>UserName: <b>${res[i].UserName}</b><br/>`;
+                        data += `First Name :<b>${res[i].FName}</b><br/>`; 
+                        data += `Last Name :<b>${res[i].LName}</b><br/>`;                
+                        data += "</div><hr/>";
                         $('.jumbotron').append("<br/>"+data);
                        }
                    } else {
 
-                        var data =  `<div>UserName: <h3>${res.UserName}</h3>`;
-                        data += `First Name :<h3>${res.FName}</h3>`; 
-                        data += `Last Name :<h3>${res.LName}</h3>`;                
-                        data += "</div>";
+                        var data =  `<div>UserName: <b>${res.UserName}</b><br/>`;
+                        data += `First Name :<b>${res.FName}</b><br/>`; 
+                        data += `Last Name :<b>${res.LName}</b><br/>`;                
+                        data += "</div><hr/>";
                         $('.jumbotron').append("<br/>"+data);
 
                    }

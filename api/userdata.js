@@ -1,10 +1,10 @@
-var express = require('express');
-var router =express.Router();
-var jwt = require('jsonwebtoken');
-var userData = require ('../model/user');
+import express from 'express';
+const router =express.Router();
+import jwt from 'jsonwebtoken';
+import userData from '../model/user';
 
 router.get('/',function(req,res){
-    jwt.verify(req.query.token, 'iamsecreate',function(err,decode){
+    jwt.verify(req.query.token, 'imsecrete',function(err,decode){
         if(err){
             throw err;
         } else {
@@ -25,9 +25,6 @@ router.get('/',function(req,res){
 
 
 router.put('/',function(req,res){
-    console.log("put hit");
-    console.log(req.body);
-
     userData.findOneAndUpdate({UserName : req.body.username},{FName:req.body.fname , LName:req.body.lname},function(err,doc){
         if(err){
             throw err;

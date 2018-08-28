@@ -1,27 +1,39 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var app = express();
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+const app = express();
+const server = app.listen(3000);
+const io = require('socket.io').listen(server);
+io.set('origins', 'http://localhost:3000');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
-var signupRouter = require ('./router/signup');
-var signinRouter = require ('./router/signin');
-var profileRouter= require ('./router/profile'); 
-var updateRouter = require ('./router/update');
-var searchRouter = require ('./router/search');
-var userdataRouter= require('./api/userdata');
-var searchUserRouter = require ('./api/searchUser');
+app.use(cors());
 
-app.use('/',signupRouter);
-app.use('/signin',signinRouter);
-app.use('/profile',profileRouter);
-app.use('/update',updateRouter);
-app.use('/userdata',userdataRouter);
-app.use('/search',searchRouter);
-app.use('/searchuser',searchUserRouter);
+ import signupRouter from './router/signup';
+ import signinRouter from'./router/signin';
+ import profileRouter from'./router/profile'; 
+ import updateRouter from './router/update';
+ import searchRouter from './router/search';
+ import userdataRouter from './api/userdata';
+ import searchUserRouter from './api/searchUser';
 
-app.listen(3000);
+ app.use('/',signupRouter);
+ app.use('/signin',signinRouter);
+ app.use('/profile',profileRouter);
+ app.use('/update',updateRouter);
+ app.use('/userdata',userdataRouter);
+ app.use('/search',searchRouter);
+ app.use('/searchuser',searchUserRouter);
+
+//app.listen(3000);
+
+io.on('connection', function (socket) {
+    socket.emit('news', { hello: 'welcome to my app' });
+    socket.on('my other event', function (data) {
+      console.log(data.msg);
+    });
+});
+
 console.log('server running on port 3000');
-console.log(path.join(__dirname));

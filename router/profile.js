@@ -1,28 +1,28 @@
-var express = require ('express');
-var router = express.Router();
-var path = require('path');
-var moment = require('moment');
-var useragent = require ('express-useragent');
-var requestIp = require('request-ip');
-var jwt = require ('jsonwebtoken');
-var userActivity = require ('../model/userActivity');   
+import express from 'express';
+const router = express.Router();
+import path from 'path';
+import moment from 'moment';
+import useragent from 'express-useragent';
+import requestIp from 'request-ip';
+import jwt from 'jsonwebtoken';
+import userActivity from'../model/userActivity';   
 
 
 router.get('/',function(req,res){
 
-   var source = req.headers['user-agent'],
+   let source = req.headers['user-agent'],
    ua = useragent.parse(source);
 
-   var clientIp = requestIp.getClientIp(req);
-   var date = moment().format("MMM Do YY")
+   let clientIp = requestIp.getClientIp(req);
+   let date = moment().format("MMM Do YY");
 
 
 
-   jwt.verify(req.query.id,'iamsecreate',function(err,decode){
+   jwt.verify(req.query.id,'imsecrete',function(err,decode){
        if(err){
            throw err;
        } else  {
-           var activity = {
+           let activity = {
                UserName : decode.username,
                IP:clientIp,
                Date: date,
@@ -30,7 +30,7 @@ router.get('/',function(req,res){
            }
 
 
-           var data = new userActivity(activity);
+           let data = new userActivity(activity);
            data.save();
        }
    })

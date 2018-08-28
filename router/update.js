@@ -1,10 +1,9 @@
-var express = require ('express');
-var router = express.Router();
-var path = require('path');
-var authentication = require('../middleware/auth');
-var bodyParser = require('body-parser');
-var app = express();
-var authetication = require ('../middleware/auth.js');
+import express from 'express'
+const router = express.Router();
+import path from 'path';
+import bodyParser from 'body-parser';
+const app = express();
+import authetication from '../middleware/auth.js';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));

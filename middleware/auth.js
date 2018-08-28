@@ -1,8 +1,8 @@
-var jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 
 function authentication(req,res,next){
-    jwt.verify(req.query.id, 'iamsecreate',function(err,decode){
+    jwt.verify(req.query.id, 'imsecrete',function(err,decode){
         if(err){
             res.send("unauth");
         } else {

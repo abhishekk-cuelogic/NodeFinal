@@ -10,7 +10,7 @@ const schema = Joi.object().keys({
 function validation(req,res,next) {
     Joi.validate(req.body,schema,function(err,value){
       if(err){
-        console.log("not validate");
+        res.json("Unsuccessful");
       }else{
         next();
       }
