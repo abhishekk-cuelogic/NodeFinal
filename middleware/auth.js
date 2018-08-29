@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 
-function authentication(req,res,next){
+const authentication = (req,res,next) =>{
     jwt.verify(req.query.id, 'imsecrete',function(err,decode){
         if(err){
             res.send("unauth");
@@ -12,4 +12,5 @@ function authentication(req,res,next){
     })
 }
 
-module.exports = authentication;
+//module.exports = authentication;
+export default authentication;

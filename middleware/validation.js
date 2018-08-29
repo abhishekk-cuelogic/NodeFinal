@@ -7,7 +7,7 @@ const schema = Joi.object().keys({
   lname:Joi.string().required() 
 });
 
-function validation(req,res,next) {
+const validation = (req,res,next) => {
     Joi.validate(req.body,schema,function(err,value){
       if(err){
         res.json("Unsuccessful");
@@ -17,4 +17,5 @@ function validation(req,res,next) {
     })
 }
 
-module.exports = validation;
+//module.exports = validation;
+export default validation;

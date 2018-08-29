@@ -14,7 +14,7 @@ router.get('/',function(req,res){
    ua = useragent.parse(source);
 
    let clientIp = requestIp.getClientIp(req);
-   let date = moment().format("MMM Do YY");
+   let date = moment().format("MMMM Do YYYY, h:mm:ss a");
 
 
 
@@ -29,9 +29,10 @@ router.get('/',function(req,res){
                UA:ua.source
            }
 
-
-           let data = new userActivity(activity);
-           data.save();
+           userActivity.findOneAndUpdate({UserName:decode.username}, activity, {upsert:true}, function(err, doc){
+                if (err) return res.send(500, { error: err });
+        });
+           
        }
    })
    //res.sendFile(path.join('H:\\NodeFinal'+'\\public'+'\\profile.html'))
